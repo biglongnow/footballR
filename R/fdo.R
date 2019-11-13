@@ -46,7 +46,7 @@ fdo_call_API <- function(request, token="", response = "full"){
 ##' @export
 
 fdo_listComps <- function(season="", token="", response = "full"){
-  url <- paste0("v1/competitions/",ifelse(season=="","",paste0("?season=",season)))
+  url <- paste0("v2/competitions/",ifelse(season=="","",paste0("?season=",season)))
   fdo_call_API(url, token, response)
 }
 
@@ -72,7 +72,7 @@ fdo_listComps <- function(season="", token="", response = "full"){
 #' @export
 
 fdo_listCompTeams <- function(id, token="", response = "full"){
-  url <- paste0("v1/competitions/",id,"/teams")
+  url <- paste0("v2/competitions/",id,"/teams")
   fdo_call_API(url, token, response)
 }
 
@@ -103,7 +103,7 @@ fdo_listCompTeams <- function(id, token="", response = "full"){
 
 
 fdo_leagueTable <- function(id, matchDay = "", token="", response = "full"){
-  url <- paste0("v1/competitions/",id,"/leagueTable",
+  url <- paste0("v2/competitions/",id,"/leagueTable",
                 ifelse(matchDay=="","",paste0("?matchday=",matchDay)))
   fdo_call_API(url, token, response)
 }
@@ -133,7 +133,7 @@ fdo_leagueTable <- function(id, matchDay = "", token="", response = "full"){
 
 
 fdo_team <- function(id, token="", response = "full"){
-  url <- paste0("v1/teams/",id)
+  url <- paste0("v2/teams/",id)
   fdo_call_API(url, token, response)
 }
 
@@ -159,7 +159,7 @@ fdo_team <- function(id, token="", response = "full"){
 ##' @export
 
 fdo_teamPlayers <- function(id, token="", response = "full"){
-  url <- paste0("v1/teams/",id,"/players")
+  url <- paste0("v2/teams/",id,"/players")
   fdo_call_API(url, token, response)
 }
 
@@ -203,7 +203,7 @@ fdo_teamPlayers <- function(id, token="", response = "full"){
 
 fdo_listCompFixtures <- function(id, timeFrame = "", matchDay = "",
                                  token="", response = "full"){
-  url <- paste0("v1/competitions/",id,"/fixtures?",
+  url <- paste0("v2/competitions/",id,"/fixtures?",
                 ifelse(timeFrame=="","",paste0("&timeFrame=",timeFrame)),
                 ifelse(matchDay=="","",paste0("&matchday=",matchDay)))
   fdo_call_API(url, token, response)
@@ -251,7 +251,7 @@ fdo_listCompFixtures <- function(id, timeFrame = "", matchDay = "",
 
 fdo_listTeamFixtures <- function(id, season = "", timeFrame = "", venue = "",
                                  token = "", response = "full"){
-  url <- paste0("v1/teams/",id,"/fixtures?",
+  url <- paste0("v2/teams/",id,"/fixtures?",
                 ifelse(season=="","",paste0("season=",season)),
                 ifelse(timeFrame=="","",paste0("&timeFrame=",timeFrame)),
                 ifelse(venue=="","",paste0("&venue=",venue)))
@@ -287,7 +287,7 @@ fdo_listTeamFixtures <- function(id, season = "", timeFrame = "", venue = "",
 ##' @export
 
 fdo_getFixture <- function(id, past = "",token = "", response = "full"){
-  url <- paste0("v1/fixtures/",id,"/",
+  url <- paste0("v2/fixtures/",id,"/",
                 ifelse(past == "","",paste0("?head2head=",past)))
   fdo_call_API(url, token, response)
 }
@@ -329,7 +329,7 @@ fdo_listFixtures <- function(league = "", timeFrame = "",
                              token="", response = "full"){
   if(length(league)>1)
     league <- paste0(league, collapse = ",")
-  url <- paste0("v1/fixtures/?",
+  url <- paste0("v2/fixtures/?",
                 ifelse(timeFrame == "","",paste0("timeFrame=",timeFrame)),
                 ifelse(league == "","",paste0("&league=",league)))
   fdo_call_API(url, token, response)
